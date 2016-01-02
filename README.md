@@ -644,4 +644,4 @@ public class MainActivity extends AppCompatActivity {
 
 [Github下载地址](https://github.com/SpikeKing/TestCoordinatorLayout.git)
 
-这样联动效果就已经显示出来了, 在AppBar中Toolbar和Title之间的关系, 符合Material的风格, 给用户更多的体验. 既然已经集成到HelloWorld中, 说明Android是极力推荐使用CoordinatorLayout这种风格的, 那我们就Enjoy it吧.
+这样联动效果就已经显示出来了, 在AppBar中Toolbar和Title之间的关系, 符合Material的风格, 给用户更多的体验. 既然已经集成到HelloWorld中, 说明Android是极力推荐使用CoordinatorLayout这种风格的, 那我们就Enjoy it吧.
