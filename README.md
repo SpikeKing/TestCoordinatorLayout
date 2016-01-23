@@ -4,6 +4,7 @@ CoordinatorLayout使用方法
 作为Android的控件, CoordinatorLayout已经加入最新的HelloWorld项目中, 也是Material风格的重要组件, 协调(Coordinate)其他组件, 实现联动. 那么让我们来看看这个动画效果怎么用吧? 
 
 ###1. 准备
+
 首先新建HelloWorld项目.
 
 在项目的build.gradle文件中, 引入头像控件库和CardView库, 在本例中会使用.
