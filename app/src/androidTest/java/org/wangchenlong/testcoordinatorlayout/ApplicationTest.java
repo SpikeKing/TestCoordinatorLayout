@@ -1,4 +1,4 @@
-package spikeking.github.com.testcoordinatorlayout;
+package org.wangchenlong.testcoordinatorlayout;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
