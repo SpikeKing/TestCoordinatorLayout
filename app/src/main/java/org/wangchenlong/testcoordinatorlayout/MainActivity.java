@@ -3,7 +3,9 @@ package org.wangchenlong.testcoordinatorlayout;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.main_tb_toolbar)
     Toolbar mTbToolbar; // 工具栏
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         mTbToolbar.setTitle("");
 
-        // AppBar的监听
+        // 向上或向下滑动AppBar就会触发监听
         mAblAppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
@@ -63,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        initParallaxValues(); // 自动滑动效果
+        initParallaxValues(); // 设置自动滑动（视差）效果
     }
 
-    // 设置自动滑动的动画效果
+    // 设置自动滑动（视差）效果
     private void initParallaxValues() {
         CollapsingToolbarLayout.LayoutParams petDetailsLp =
                 (CollapsingToolbarLayout.LayoutParams) mIvPlaceholder.getLayoutParams();

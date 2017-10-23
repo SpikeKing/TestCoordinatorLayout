@@ -46,38 +46,27 @@ public class AvatarImageBehavior extends CoordinatorLayout.Behavior<CircleImageV
 
     @Override
     public boolean layoutDependsOn(CoordinatorLayout parent, CircleImageView child, View dependency) {
-        // 依赖Toolbar控件
-        return dependency instanceof Toolbar;
+        return dependency instanceof Toolbar;  // 依赖Toolbar控件
     }
 
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, CircleImageView child, View dependency) {
+        shouldInitProperties(child, dependency);  // 初始化属性
+        final int maxScrollDistance = (int) (mStartToolbarPosition - getStatusBarHeight());  // 最大滑动距离: 起始位置-状态栏高度
+        float expandedPercentageFactor = dependency.getY() / maxScrollDistance;  // 滑动的百分比
 
-        // 初始化属性
-        shouldInitProperties(child, dependency);
-
-        // 最大滑动距离: 起始位置-状态栏高度
-        final int maxScrollDistance = (int) (mStartToolbarPosition - getStatusBarHeight());
-
-        // 滑动的百分比
-        float expandedPercentageFactor = dependency.getY() / maxScrollDistance;
-
-        // Y轴距离
         float distanceYToSubtract = ((mStartYPosition - mFinalYPosition)
-                * (1f - expandedPercentageFactor)) + (child.getHeight() / 2);
-
-        // X轴距离
+                * (1f - expandedPercentageFactor)) + (child.getHeight() / 2);  // Y轴距离
         float distanceXToSubtract = ((mStartXPosition - mFinalXPosition)
-                * (1f - expandedPercentageFactor)) + (child.getWidth() / 2);
+                * (1f - expandedPercentageFactor)) + (child.getWidth() / 2);  // X轴距离
 
-        // 高度减小
-        float heightToSubtract = ((mStartHeight - mFinalHeight) * (1f - expandedPercentageFactor));
+        float heightToSubtract = ((mStartHeight - mFinalHeight) * (1f - expandedPercentageFactor)); // 高度减小
 
-        // 图片位置
+        // 设置图片位置
         child.setY(mStartYPosition - distanceYToSubtract);
         child.setX(mStartXPosition - distanceXToSubtract);
 
-        // 图片大小
+        // 设置图片大小
         CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
         lp.width = (int) (mStartHeight - heightToSubtract);
         lp.height = (int) (mStartHeight - heightToSubtract);
@@ -93,33 +82,22 @@ public class AvatarImageBehavior extends CoordinatorLayout.Behavior<CircleImageV
      * @param dependency ToolBar
      */
     private void shouldInitProperties(CircleImageView child, View dependency) {
-
-        // 图片控件中心
-        if (mStartYPosition == 0)
-            mStartYPosition = (int) (child.getY() + (child.getHeight() / 2));
-
-        // Toolbar中心
-        if (mFinalYPosition == 0)
-            mFinalYPosition = (dependency.getHeight() / 2);
-
-        // 图片高度
-        if (mStartHeight == 0)
-            mStartHeight = child.getHeight();
-
-        // Toolbar缩略图高度
-        if (mFinalHeight == 0)
-            mFinalHeight = mContext.getResources().getDimensionPixelOffset(R.dimen.image_final_width);
-
-        // 图片控件水平中心
-        if (mStartXPosition == 0)
+        if (mStartXPosition == 0)  // 图片控件水平中心
             mStartXPosition = (int) (child.getX() + (child.getWidth() / 2));
-
-        // 边缘+缩略图宽度的一半
-        if (mFinalXPosition == 0)
+        if (mFinalXPosition == 0)  // 边缘+缩略图宽度的一半
             mFinalXPosition = mContext.getResources().getDimensionPixelOffset(R.dimen.abc_action_bar_content_inset_material) + (mFinalHeight / 2);
 
-        // Toolbar的起始位置
-        if (mStartToolbarPosition == 0)
+        if (mStartYPosition == 0)  // 图片控件竖直中心
+            mStartYPosition = (int) (child.getY() + (child.getHeight() / 2));
+        if (mFinalYPosition == 0)  // Toolbar中心
+            mFinalYPosition = (dependency.getHeight() / 2);
+
+        if (mStartHeight == 0)  // 图片高度
+            mStartHeight = child.getHeight();
+        if (mFinalHeight == 0)  // Toolbar缩略图高度
+            mFinalHeight = mContext.getResources().getDimensionPixelOffset(R.dimen.image_final_width);
+
+        if (mStartToolbarPosition == 0)  // Toolbar的起始位置
             mStartToolbarPosition = dependency.getY() + (dependency.getHeight() / 2);
     }
 
