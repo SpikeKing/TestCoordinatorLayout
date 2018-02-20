@@ -1,3 +1,3 @@
 # TestCoordinatorLayout
 
-CoordinatorLayout的开发标准模板，Created by C.L. Wang
+熟练掌握 CoordinatorLayout 的开发技术
